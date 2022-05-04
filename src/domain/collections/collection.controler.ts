@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Param, ParseUUIDPipe, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiSecurity, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { GetLoggedUser } from 'src/auth/decorators/get-logged-user.decorator';
 
 import { User } from '../user/user.entity';
@@ -16,6 +16,7 @@ export class CollectionsController {
   constructor(private readonly service: CollectionService) {}
 
   @Post()
+  @ApiOperation({summary: 'Create a collection '})
   public async createCollection(
     @Body() createDto: CreateCollectionDto,
     @GetLoggedUser() user: User,
@@ -24,6 +25,7 @@ export class CollectionsController {
   }
   
   @Delete('/:id')
+  @ApiOperation({summary: 'Delete a collection '})
   public async delete(
     @Param('id', new ParseUUIDPipe()) id: string,
   ): Promise<void> {
