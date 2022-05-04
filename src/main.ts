@@ -7,6 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
+  .setTitle('API NFT')
   .setDescription('API working NFTs')
   .setVersion('1.0')
   .build();
