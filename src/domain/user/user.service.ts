@@ -7,7 +7,7 @@ import { UserRepository } from "./user.repository";
 export class UserService{
     constructor(private readonly repository: UserRepository){}
 
-    public async createUser({ name, email, password, salt}): Promise<User>{
+    public async createUser( name: string, email: string, password: string, salt: string): Promise<User>{
         const user = this.repository.create({
             name,
             email,
