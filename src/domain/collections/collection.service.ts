@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { User } from '../user/user.entity';
 import { Collections } from './collection.entity';
 import { CollectionRepository } from './collection.repository';
@@ -24,5 +24,13 @@ export class CollectionService {
     delete collection.author;
 
     return collection;
+  }
+
+  public async delete(id: string): Promise<void> {
+    const collection = await this.repository.findOne({ id });
+    if (!collection)
+      throw new BadRequestException("There's no Collection with given ID");
+
+    await collection.remove();
   }
 }

@@ -7,7 +7,7 @@ export class SignInCredentialsDto{
     @IsNotEmpty()
     email: string;
 
-    @ApiProperty({description: 'Password', example: 'deadStar'})
+    @ApiProperty({description: 'Password', example: 'deadStart'})
     @IsString()
     @IsNotEmpty()
     password: string;
