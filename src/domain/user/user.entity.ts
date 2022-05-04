@@ -1,6 +1,7 @@
 import { CustomBaseEntity } from 'src/shared/custom-base.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
 import { Collections } from '../collections/collection.entity';
+import { NFT } from '../nft/nft.entity';
 
 @Entity('users')
 export class User extends CustomBaseEntity {
@@ -24,4 +25,9 @@ export class User extends CustomBaseEntity {
     },
   )
   collections: Collections[];
+
+  @ManyToMany(() => NFT, (nft: NFT) => nft.likes, {
+    nullable: true,
+  })
+  likedNfts: NFT[];
 }
