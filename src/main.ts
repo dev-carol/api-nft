@@ -10,6 +10,12 @@ async function bootstrap() {
   .setTitle('API NFT')
   .setDescription('API working NFTs')
   .setVersion('1.0')
+  .addSecurity('Authorization', {
+    type: 'apiKey',
+    name: 'Authorization',
+    description: 'Enter Authorization token',
+    in: 'header',
+  })
   .build();
   const document = SwaggerModule.createDocument(app, config);
  SwaggerModule.setup('api', app, document);
